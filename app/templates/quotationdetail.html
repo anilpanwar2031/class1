@@ -1,0 +1,204 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Quotation{% endblock title %}
+
+{% block main-content %}
+<div class="col-md-12 p-0 quotation-page-1 float-left">
+        <div class="col-md-3 col-sm-12 sidebar-text float-left">
+            <div class="pt-20">&nbsp;</div>
+            <div class="form-group has-search">
+                <span class="fa fa-search form-control-feedback"></span>
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="text" class="form-control searchbox" placeholder="Search for the products" id="psearch" />
+                </form>
+            </div>
+            <div class="sidebar-div" id="ps">
+                {% for p in products %}
+                <div class="card">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <img class="product-img" src="{% static 'dist/img/image_77.png' %}" alt="Card image" />
+                            <div class="card-body-right">
+                                <p class="sidebar-heading mb-0">{{p.name}} <span class="active-button">Active</span></p>
+                                <p class="sidebar-description mb-0"><span class="card-text">{{p.description}}</span></p>
+                                <p class="sidebar-footer-text mb-0">{{p.selling_price}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- Content Header (Page header) -->
+        <div class="col-md-9 right-side float-left">
+            <p class="right-side-heading">Dashboard / Quotations/ <span
+                    style="color:#424242 !important;">{{quot.quot_no}} ({{quot.name}}) </span></p>
+            <!-- NEW DESIGN START-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="tab" role="tabpanel">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#Section1" aria-controls="home"
+                                        role="tab" data-toggle="tab"><i class="fa fa-shopping-bag"
+                                            aria-hidden="true"></i> Quote</a></li>
+                                <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab"
+                                        data-toggle="tab"> <i class="fas fa-layer-group"></i> Quote Version</a></li>
+                                <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab"
+                                        data-toggle="tab"><i class="fa fad fa-male" aria-hidden="true"></i> Client
+                                        Details</a></li>
+                                <li role="presentation"><a href="#Section4" aria-controls="settings" role="tab"
+                                        data-toggle="tab"><i class="fa fa-sliders-h" aria-hidden="true"></i>
+                                        Settings</a></li>
+                            </ul>
+                            <div class="tab-content tabs">
+                                <div role="tabpanel" class="tab-pane in active" id="Section1">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-4 pr-0">
+                                                <div class="form-group d-flex">
+                                                    <label class="heading-lebel ml-2">Quote Name: </label>
+                                                    <input type="email" class="form-control w-50 ml-2"
+                                                        id="colFormLabelSm" placeholder="ORANGE BUCK">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pl-0">
+                                                <div class="form-group d-flex">
+                                                    <label class="heading-lebel">Quote Status: </label>
+                                                    <select class="custom-select  w-50 ml-2"
+                                                        id="inlineFormCustomSelect">
+                                                        {% for qs in quotationstatus %}
+                                                        <option>{{qs.1}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pl-0 text-center">
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-default export-btn"><i
+                                                            class="fas fa-external-link-alt"></i> Export</button>
+                                                    <button type="submit" class="btn btn-default export-btn"><i
+                                                            class="fas fa-layer-group"></i> Create Version</button>
+                                                    <button type="submit" class="btn btn-default save-btn"><i
+                                                            class="fas fa-download"></i> Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="Section2">
+                                    <h3>SecKtion 2</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a
+                                        ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor.
+                                        Proin accumsan felis ac felis dapibus, non iaculis mi varius.</p>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="Section3">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a
+                                        ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor.
+                                        Proin accumsan felis ac felis dapibus, non iaculis mi varius.</p>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="Section4">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a
+                                        ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor.
+                                        Proin accumsan felis ac felis dapibus, non iaculis mi varius.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-8 total-background ">
+                        <label class="grand-total">Grand Total: R {{grandtotal}}</label>
+                        <button type="button" class="new-section-btn" data-toggle="modal" data-target="#exampleModal"
+                            data-whatever="@mdo"><i class="fas fa-plus-circle" aria-hidden="true"></i> New
+                            Section</button>
+                    </div>
+                </div>
+
+
+
+
+                {% for s in data %}
+                <div class="row d-flex justify-content-center mt-4">
+                    <div class="col-md-9 add-product-area">
+                        <label class="heading-lebel">{{s.name}}: <span class="rupees-text">R {{s.sectiontotal}}</span> <span class="product-item-count">{{s.sitems}} item(s)</span></label>
+
+                        {% for p in s.sprodts %}
+                        <div class="card">
+                                <div class="col-sm-12 product-listing">
+                                    <img class="added-product-img" src="{% static 'dist/img/image_77.png' %}" alt="Card image" />
+                                    <p class="mb-0 product-name-heading"><span class="sidebar-heading">{{p.name}}</span>
+                                        <span>{{p.description}}</span><span
+                                            class="cross-button"><i class="far fa-times-circle"></i></span>
+                                    </p>
+                                    <div class="col-sm-9 p-0 float-left quantity-box">
+                                        <span class="item-details ml-0">QTY: </span>
+                                        <input type="text" class="form-control col-md-1 col-sm-6" id="colFormLabelSm"
+                                            placeholder="1">
+                                        <span class="item-details">Unit Price: R</span>
+                                        <input type="text" class="form-control col-md-2 col-sm-8" id="colFormLabelSm"
+                                            placeholder={{p.selling_price}}>
+                                        <span class="item-details">Discount: </span>
+                                        <input type="text" class="form-control col-md-2 col-sm-8" id="colFormLabelSm"
+                                            placeholder="0"> <span class="item-details">%</span>
+
+                                    </div>
+                                    <p class="total-price">
+                                        <span class="float-left">Item Total: <b class="price-color">R {{p.selling_price}}</b></span>
+                                        <span class="active-button">Active</span>
+                                    </p>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+
+                        {% for sub in s.subsectns%}
+                        <div class="justify-content-center add-sub-section-area">
+                            <label class="sub-prouduct-heading-lebel">{{sub.name}}: <span class="rupees-text">R {{sub.subtotal}}</span>
+                                <span class="product-item-count">{{sub.subitems}} item(s)</span></label>
+
+                            {% for p in sub.subprodts %}
+                            <div class="card">
+                                <div class="col-sm-12 product-listing">
+                                    <img class="added-product-img" src="{% static 'dist/img/image_77.png' %}" alt="Card image" />
+                                    <p class="mb-0 product-name-heading"><span class="sidebar-heading">{{p.name}}</span>
+                                        <span>{{p.description}}</span><span
+                                            class="cross-button"><i class="far fa-times-circle"></i></span>
+                                    </p>
+                                    <div class="col-sm-9 p-0 float-left quantity-box">
+                                        <span class="item-details ml-0">QTY: </span>
+                                        <input type="text" class="form-control col-md-1 col-sm-6" id="colFormLabelSm"
+                                            placeholder="1">
+                                        <span class="item-details">Unit Price: R</span>
+                                        <input type="text" class="form-control col-md-2 col-sm-8" id="colFormLabelSm"
+                                            placeholder={{p.selling_price}}>
+                                        <span class="item-details">Discount: </span>
+                                        <input type="text" class="form-control col-md-2 col-sm-8" id="colFormLabelSm"
+                                            placeholder="0"> <span class="item-details">%</span>
+
+                                    </div>
+                                    <p class="total-price">
+                                        <span class="float-left">Item Total: <b class="price-color">R {{p.selling_price}}</b></span>
+                                        <span class="active-button">Active</span>
+                                    </p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+                {% endfor %}
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+{% endblock main-content %}

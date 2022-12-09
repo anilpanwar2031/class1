@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Quotations{% endblock title %}
+
+{% block pagenav %}
+<div class="content-header tab-padding-left">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <p class="m-0 dashboard-sub-heading">Dashboard / <span style="color:#424242 !important;">Quotations</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock pagenav %}
+
+{% block main-content %}
+<div id="testdiv">
+
+</div>
+<section class="content tab-padding-left">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body quotations-card">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group has-search">
+                            <span class="fa fa-search form-control-feedback"></span>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="text" class="form-control searchbox" placeholder="Search for a Quote" id="qsearch"/>
+                            </form>
+
+                        </div>
+                    </div>
+                    <div class="col-md-9 text-right">
+                        <button class="btn btn-warning new-quotations-btn"><i class="fa fa-plus quotation-plus-icon"></i> New Quote</button>
+                    </div>
+                </div>
+                <table id="example1" class="table text-center quotations-table">
+                    <thead>
+                    <tr  class="heading">
+                        <th>Quote No.</th>
+                        <th>Name</th>
+                        <th>Quote Status</th>
+                        <th>Market Segment</th>
+                        <th>Created on</th>
+                        <th>Created By</th>
+                        <th>Quote Total</th>
+                    </tr>
+                    </thead>
+                    <tbody id="qtbody">
+                    {% for q in quots %}
+                    <tr>
+                        <td class="fw-bold"><a href="{% url 'quotdetail' q.id %}">{{q.quot_no}}</a></td>
+                        <td>{{q.name}}</td>
+                        <td>{{q.get_quot_status_display}}</td>
+                        <td>{{q.market_seg}}</td>
+                        <td>{{q.created_at|date:"M d, Y"}} | {{q.created_at|time:"h:i a"}}</td>
+                        <td>{{q.created_by.email}}</td>
+                        <td class="fw-bold">R 320</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock main-content %}
+
+{% block quottable %}
+<script src="{% static 'plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script>
+    $(function () {
+      $("#example1").DataTable({
+        "responsive": true,
+        "searching": false,
+        "lengthChange": false,
+        "autoWidth": false,
+        "ordering":false
+      });
+    });
+</script>
+{% endblock quottable %}
+

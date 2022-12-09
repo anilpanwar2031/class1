@@ -1,0 +1,955 @@
+@font-face {
+    font-family: 'Manrope-regular';
+    src: url('../css/Manrope/Manrope-Regular.ttf') format('truetype'); 
+}
+
+@font-face {
+    font-family: 'Manrope-bold';
+    src: url('../css/Manrope/Manrope-Bold.ttf') format('truetype');
+}  
+
+@font-face {
+    font-family: 'Manrope-Medium';
+    src: url('../css/Manrope/Manrope-Medium.ttf') format('truetype');
+}  
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../css/Poppins/Poppins-Regular.ttf') format('truetype'); 
+}
+
+
+/*****************************************************/
+                    /** Login Page CSS **/
+/********************* *******************************/
+.login-page, .register-page {
+    background-color: #F8F8F8 !important;
+    width: 100% !important;
+}
+
+.login-card-body, .register-card-body {
+    background: #FFFFFF;
+    box-shadow: 0px 5px 14px 1.74px rgba(117, 117, 117, 0.15);
+    border-radius: 20px;
+}
+
+.login-page, .card {
+    box-shadow: none !important;
+    background-color: #F8F8F8 !important;
+}
+.login-page, .label {
+    font-family: 'Manrope-regular';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 40px;
+    float: left; 
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.login-card-body .input-group .form-control, .register-card-body .input-group .form-control {
+    
+    /* Text Field */
+    box-sizing: border-box;
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 13px 20px;
+    
+    width: 402px;
+    height: 56px;
+
+    background: #FAFAFA;
+    /* Disabled */
+    border: 1px solid #D8D8D8;
+    border-radius: 10px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #005093 !important;
+    border-color: #005093 !important;
+    box-shadow: none;
+    padding: 10px 52px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.login-page, .remember {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400 !important;
+    font-size: 12px;
+    line-height: 21px;
+    color: #616161;
+}
+
+[class*=icheck-]>input:first-child+input[type=hidden]+label::before, [class*=icheck-]>input:first-child+label::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 20px !important;
+    height: 19px !important;
+    border: 1px solid #D3CFC8;
+    border-radius: 5px;
+    margin-left: -29px;
+}
+
+
+/*****************************************************/
+                /** Dashboard Page CSS **/
+/*****************************************************/
+
+.content-wrapper {
+    background-color: #F8F8F8 !important;
+    margin-left: 0px !important;
+
+}
+.container-fluid .bg-info {
+    background: rgba(0, 80, 147, 0.1) !important;
+}
+
+.header-logo {
+    width: 116px;
+    height: 43px;
+    left: 40px;
+    top: 11px;
+}
+
+.header-active-menu {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 10px 15px !important;
+    gap: 10px;
+    width: 108px;
+    height: 42px;
+    background: rgba(0, 80, 147, 0.1);
+    border-radius: 5px;
+    color: #005093 !important;
+}
+
+.header-side-left-text {
+    width: 60px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;    
+   /* identical to box height */
+    text-align: center;
+    padding: 7px 16px !important;
+
+    /* Blue */
+    background: rgba(0, 80, 147, 0.1);
+
+    color: #005093 !important;
+}
+
+.dashboard-sub-heading {
+    width: 414px;
+    height: 21px;
+    left: 228px;
+    top: 89px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 21px;
+    color: #BDBDBD;
+}
+
+.dashboard-tabs {
+    height: 113px;
+    background: rgba(0, 80, 147, 0.1);
+    border-radius: 10px;
+}
+
+.dashboard-tabs .lebel-number {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 25px;
+    text-align: left;
+    color: #005093;
+}
+
+.dashboard-tabs .lebel-text {
+    width: 119px;
+    height: 25px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 25px;
+    /* identical to box height, or 125% */
+    text-align: left;
+    /* Black */
+    color: #212121;
+}
+.inner {
+    padding: 25px !important;
+}
+
+
+
+/*****************************************************/
+                /** Quotations Page CSS **/
+/*****************************************************/
+
+.quotations-card {
+    /* white */
+    background: #FFFFFF !important;
+    /* grey */
+    box-shadow: 0px 3px 12px 1.74px rgba(167, 167, 167, 0.15);
+    border-radius: 10px;
+}
+
+.btn-warning {
+    color: #fff !important;
+    background-color: #EC934C !important;
+    border-color: #EC934C !important;
+    box-shadow: none;
+    padding: 10px 52px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.new-quotations-btn{
+    /* Button Following */
+    box-sizing: border-box;
+    /* Auto layout */
+    justify-content: center;
+    align-items: center;
+    padding: 9px 12px;
+    height: 38px;
+   /* orange */
+    border: 1px solid #EC934C;
+    border-radius: 6px;
+    font-family: 'Poppins' !important;
+    font-style: normal;
+    font-weight: 600 !important;
+    font-size: 12px !important;
+    color: #FFFFFF;
+}
+
+.quotation-plus-icon {
+    border: 1.5px solid #FFFFFF;
+    padding: 1px;
+    font-size: 10px;
+    vertical-align: middle;
+    line-height: normal !important;
+}
+
+.quotations-table {
+    /* white */
+    background: #FFFFFF;
+    /* grey */
+    box-shadow: 0px 3px 12px 1.74px rgba(167, 167, 167, 0.15);
+    border-radius: 10px;
+    font-family: 'Poppins' !important;   
+    font-size: 14px !important;
+    line-height: 30px;
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 3rem;
+    height: 2rem;
+    line-height: 3rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+.has-search .searchbox {
+    box-sizing: border-box;
+    height: 45px !important;
+    /* White */
+    background: #FFFFFF;
+    /* Grey/300 */
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    font-family: 'Manrope-regular';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 19px;
+    /* Grey/400 */
+    color: #BDBDBD;
+}
+
+.quotations-table .heading {
+    left: 0px;
+    top: 64px;
+    background: #87818126 !important;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 23px !important;
+    /* identical to box height, or 175% */
+
+    text-align: center;
+
+    /* Grey/800 */
+
+    color: #424242 !important;
+}
+
+.quotations-table, .table thead th {
+       border-bottom: none !important;
+       line-height: 30px;
+}
+.quotations-table, .table td, .table th {
+    border-top: none !important;
+    border-bottom: none !important;
+}
+table.dataTable tr.even { 
+    background-color: #F9F9F9;
+    font-size: 12px;
+}
+table.dataTable tr.odd { 
+    background-color: #FFFFFF;
+    font-size: 12px;
+}
+
+
+/*****************************************************/
+                /** Quotations-1 Page CSS **/
+/*****************************************************/
+.quotation-page-1 {
+   background: #ECECEC !important;
+}
+.quotation-page-1 .sidebar-text {
+    left: 0px;
+    top: 60px;
+    background: #ECECEC !important;
+}
+
+.quotation-page-1 .right-side {
+    background-color: #f9f9f9 !important;
+    padding-left: 50px;
+    min-height: 900px;
+    height: auto;
+}
+
+.right-side .right-side-heading {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 21px;
+    color: #BDBDBD;
+    margin-top: 30px;
+    padding: 0px 20px;
+}
+
+.right-side .heading-1 {
+    width: 414px;
+    height: 21px;
+    left: 375px;
+    top: 89px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 21px;
+    color: #BDBDBD;
+}
+
+.tab-content>.active {
+    background: #FFFFFF;
+    border-radius: 0px 10px 10px 10px;
+}
+
+.quotation-page-1 .sidebar-heading {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 18px;    
+    color: #005093;
+    margin-top: 10px;
+}
+
+.quotation-page-1 .sidebar-description {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17px;
+    color: #757575;
+}
+
+.quotation-page-1 .sidebar-footer-text {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    color: #212121;
+}
+
+.quotation-page-1 .sidebar-img {
+    background: #FFFFFF;
+    border-radius: 6px;
+}
+.product-img {
+    border: 0.768627px solid #E0E0E0;
+    border-radius: 6px;
+    margin: 20px 20px;
+    float: left !important;
+}
+
+.quotation-page-1 .active-button {
+    width: 63px;
+    height: 28px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: center;
+    background: rgba(46, 128, 133, 0.1);
+    border-radius: 25px;
+    color: #005093;
+    padding: 8px;
+    margin: 0px 5px;
+    float: right;
+}
+
+.quotation-page-1 .card {
+    box-shadow: none !important;
+    background-color: #fff !important;
+}
+
+/* .tab-content {
+    width: 968px;
+    height: 70px;
+    left: 375px;
+    top: 178px;
+    background: #FFFFFF;
+    border-radius: 0px 10px 10px 10px;
+}
+*/
+
+.tab-content .heading-lebel {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 35px;
+    color: #616161;
+    text-align: left;
+}
+
+.tab-content .text{
+    box-sizing: border-box;
+    background: #FAFAFA;
+    border: 1px solid #D8D8D8;
+    border-radius: 6px;
+}
+
+.tab-content .export-btn {
+    background: #FFFFFF;  
+    border: 1px solid #EC934C;
+    border-radius: 6px;
+    color: #EC934C;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 20px;
+}
+
+.tab-content .save-btn {
+    background: #EC934C;
+    border: 1px solid #fff;
+    border-radius: 6px;
+    color: #fff;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 20px;
+}
+
+.total-background {
+    background: #005093;
+    border-radius: 10px;
+}
+.grand-total {
+    font-size: 16px;
+    padding: 10px;
+    color: #fff;
+}
+
+.new-section-btn {
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    justify-content: center;
+    padding: 9px;
+    background: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    border-radius: 6px;
+    float: right;
+    color: #005093;
+    margin-top: 7px;
+}
+.new-section-btn .fa-plus-icon {
+    font-size: 15px;
+}
+
+ .add-product-area{
+    font-family: 'Poppins';
+    font-weight: 600;    
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1px dashed #BDBDBD;
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    padding: 8px 10px 0px;
+}
+
+
+.add-product-icon{
+    border: 2px solid #9E9E9E;
+    padding: 6px;
+    font-size: 24px;
+    border-radius: 50%;
+    font-weight: bold;
+    color: #000;
+
+} 
+
+.add-product-area .heading-lebel {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: #616161;
+    text-align: left;
+    margin-top: 15px !important;
+}
+.add-product-area .rupees-text {
+    font-family: 'Poppins';
+    font-weight: 600;
+    color: #212121;
+    padding-left: 20px;
+}
+
+.add-product-area .fa-plus-circle {
+    font-size: 25px !important;
+    color: #616161;
+}
+/*****************************************************/
+                /** Quotations-1 END **/
+/*****************************************************/
+
+
+
+/* ============ mobile view ============ */
+@media all and (max-width: 991px) {
+
+    .login-logo, .img{
+        margin-top:-150px !important;
+    }
+
+    .tab-padding-left {
+        padding: 15px 1.5rem;
+    }
+	
+	.offcanvas-header{ display:block; }
+
+	.mobile-offcanvas{
+		visibility: hidden;
+		transform:translateX(-100%);
+		border-radius:0; 
+		display:block;
+		position: fixed;  top: 0; left:0;
+		height: 100%; width:80%;
+		z-index: 1200; 
+		overflow-y: scroll;
+		overflow-x: hidden;
+		transition: visibility .3s ease-in-out, transform .3s ease-in-out;
+	}
+
+	.mobile-offcanvas.show{
+		visibility: visible; 	transform: translateX(0);
+	}
+	.mobile-offcanvas .container, .mobile-offcanvas .container-fluid{
+		display: block;
+	}
+
+}	
+/* ============ mobile view .end// ============ */
+
+ /* Media Query for Mobile Devices */
+ @media (max-width: 480px) {
+    
+    .login-logo, .img{
+        margin-top:-250px;
+    }
+}
+  
+/* Media Query for low resolution  Tablets, Ipads */
+@media (min-width: 481px) and (max-width: 767px) {
+   
+    .login-logo, .img{
+        margin-top:-250px;
+    }
+}
+  
+/* Media Query for Tablets Ipads portrait mode */
+@media (min-width: 768px) and (max-width: 1024px){
+    
+    .login-logo, .img{
+        margin-top:0px !important;
+        margin-bottom: 4rem !important;
+    }
+}
+  
+/* Media Query for Laptops and Desktops */
+@media (min-width: 1025px) and (max-width: 1280px){
+   
+    .login-logo, .img{
+        margin-top:0px !important;
+    }
+}
+  
+/* Media Query for Large screens */
+@media (min-width: 1281px) {
+    
+    .login-logo, .img{
+        margin-top:-10px !important;
+        margin-bottom: 3.2rem !important;
+    }
+}
+
+
+
+
+/* NEW DESIGN PAGE CSS */
+
+
+.tab{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    padding: 0;
+    margin-bottom: 50px;
+}
+.tab .nav-tabs{
+    margin: 0;
+    border: none;
+    position: relative;
+}   
+.tab .nav-tabs li a{
+    color: #9E9E9E;
+    background-color: #ffffffad;
+    letter-spacing: 0.5px;
+    text-align: center;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 12px 20px;
+    margin: 0px 9px 0px 0px;
+    border-radius: 11px 11px 0px 0px;
+    border: none;
+    display: block;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    text-decoration: none !important;
+}
+.tab .nav-tabs li.active a,
+.tab .nav-tabs li a:hover,
+.tab .nav-tabs li.active a:hover{
+    color: #005093;
+    background-color: #FFFFFF;
+    border: none;
+}
+.tab .nav-tabs li a:before{
+    content: "";
+    background: #ffffffad;
+    width: 100%;
+    height: 90%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.3s ease 0s;
+}
+.tab .nav-tabs li a:hover:before,
+.tab .nav-tabs li.active a:before{
+    height: 0;
+    opacity: 0;
+}
+.tab .tab-content{
+    color: #fff;
+    background: #FFFFFF;
+    letter-spacing: 0.5px;
+    padding: 25px 1px 0px;
+    border-radius:0px 10px 10px 10px;
+}
+
+@media only screen and (max-width: 479px){
+    .tab .nav-tabs li{
+        width: 100%;
+        text-align: center;
+    }
+    .tab .nav-tabs li a{ margin: 0 0 10px; }
+
+    .quotation-page-1 .sidebar-text{
+        top: 0px !important;
+    }
+    .quotation-page-1 .right-side{
+        padding-left : 0px !important;
+    }
+    .tab-content .heading-lebel{
+        width: 100%;
+        text-align: left;
+    }
+
+    .add-sub-section-area {
+        margin: 10px 0px 20px 0px !important;
+    }
+
+    .quantity-box {
+        display: inline-grid;
+    }
+}
+
+.modelbox .add-section {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    color: #212121;
+}
+.modal-header {
+    border-bottom : none !important;
+}
+.btn-add {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 12px !important;
+    text-align: center;
+    color: #FFFFFF !important;
+    background: #EC934C !important;
+    box-shadow: 2px 2px 7px rgba(236, 147, 76, 0.2);
+    border-radius: 6px;
+    padding: 10px 20px 10px 20px !important;
+}
+
+.btn-cancel {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 12px !important;
+    text-align: center;
+    color: #EC934C !important;
+    border: 1px solid #EC934C !important;
+    box-shadow: 2px 2px 7px rgba(236, 147, 76, 0.2);
+    border-radius: 6px;
+    padding: 10px 20px 10px 20px !important;
+}
+
+.modal-footer {
+    border-top: none !important;
+    margin-right: 180px;
+    margin-bottom: 20px;
+}
+
+
+
+.add-sub-section-area{
+    font-family: 'Poppins';
+    font-weight: 600;    
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1px dashed #BDBDBD;
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    padding: 15px 20px 10px;
+    margin: 10px;
+}
+
+
+.sub-prouduct-heading-lebel {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: #616161;
+    text-align: left;
+    margin-top: 15px !important;
+}
+.sub-prouduct-rupees-text {
+    font-family: 'Poppins';
+    font-weight: 600;
+    color: #212121;
+    padding-left: 20px;
+}
+
+.add-pro-link {
+    text-decoration: none !important;
+    color: #616161;
+}
+
+/*****************************************************/
+                /** Quotations-3 START  **/
+/*****************************************************/
+.product-item-count{
+    color: #BDBDBD;
+}
+
+.added-product-img {
+    border: 0.768627px solid #E0E0E0;
+    border-radius: 6px;
+    margin: 10px 10px;
+    float: left !important;
+    width: 100px;
+}
+
+.cross-button {
+    color: #EC934C;
+    float: right;
+    font-size: 25px;
+}
+
+.product-name-heading {
+    margin-top: 10px;
+    font-size: 14px;
+    font-family: 'Poppins';
+}
+.quantity-box {
+    margin: 10px 0px 10px;
+    display: flex;
+}
+
+.quantity-box .item-details {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 20px;
+    color: #616161;
+    text-align: left;
+    margin: 10px;
+}
+
+.product-listing {
+    margin: 7px 0px 20px 0px;
+}
+
+.product-listing .active-button {
+    width: 63px;
+    height: 28px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: center;
+    background: rgba(46, 128, 133, 0.1);
+    border-radius: 25px;
+    color: #005093;
+    padding: 8px;
+    margin: 0px 5px;
+    float: right;
+}
+.product-listing .total-price{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: #616161;
+    text-align: left;
+    margin-top: 15px !important;
+}
+
+.product-listing .price-color{
+    color: #212529;
+    margin-left: 5px;
+}
+
+/*****************************************************/
+                /** Quotations-3 END  **/
+/*****************************************************/
+
+
+
+/*****************************************************/
+                /** Quotations-5 START  **/
+/*****************************************************/
+
+.add-uncategories-product-area{
+    font-family: 'Poppins';
+    font-weight: 600;    
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1px dashed #BDBDBD;
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    padding: 8px 10px 0px;
+}
+.add-uncategories-product-area .heading-lebel {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: #616161;
+    text-align: left;
+    margin-top: 15px !important;
+}
+.add-uncategories-product-area .rupees-text {
+    font-family: 'Poppins';
+    font-weight: 600;
+    color: #212121;
+    padding-left: 20px;
+}
+
+.add-uncategories-product-area .fa-plus-circle {
+    font-size: 25px !important;
+    color: #616161;
+}
+
+.add-uncategories-product-area .add-sub-section-area{
+    font-family: 'Poppins';
+    font-weight: 600;    
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border-radius: 10px;
+    padding: 0px 10px 10px;
+    margin: 10px;
+    border: 0px !important;
+    box-shadow: none !important;
+}
+
+
+/*****************************************************/
+                /** Quotations-5 END  **/
+/*****************************************************/

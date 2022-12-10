@@ -1,7 +1,6 @@
 from .models import Quotation, Product, Section, Subsection
 
 
-
 def sectionSubProduct(sections):
     data = []
     gt = 0

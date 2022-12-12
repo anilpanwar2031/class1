@@ -45,7 +45,7 @@
                     </tr>
                     </thead>
                     <tbody id="productsearch">
-                    {% for p in prods %}
+                    {% for p in page_obj %}
                     <tr>
                         <td>{{p.id}}</td>
                         <td>{{p.name}}</td>
@@ -56,6 +56,23 @@
                         {% endfor %}
                     </tbody>
                 </table>
+                <div>
+                {%if page_obj.has_previous %} {# whether the previous page exists #}
+            <a href="?page={{page_obj.previous_page_number}}"><</a> {# link to the prev page #}
+            {% endif %}
+            <span>{{page_obj.number}}</span> {# the current page number #}
+
+             {%if page_obj.has_next %} {# whether the next page exists #}
+              <a href="?page={{page_obj.next_page_number}}">></a> {# link to the next page #}
+           {% endif %}
+            </div>
+                <div>
+                    Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}
+                </div>
+                <div>
+                    <a href="?page={{page_obj.next_page_number}}" >{{page_obj.number | add:1}} </a>
+                </div>
+
             </div>
         </div>
     </div>

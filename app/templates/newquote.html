@@ -3,6 +3,9 @@
 {% block title %}Quotation{% endblock title %}
 
 {% block main-content %}
+<div class="">
+    NEW QUOTE
+</div>
 <div class="col-md-12 p-0 quotation-page-1 float-left">
     <div class="col-md-3 col-sm-12 sidebar-text float-left">
         <div class="pt-20">&nbsp;</div>
@@ -97,98 +100,27 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div role="tabpanel" class="tab-pane fade" id="Section2">
-                                    <h3>SecKtion 2</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a
-                                        ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor.
-                                        Proin accumsan felis ac felis dapibus, non iaculis mi varius.</p>
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade" id="Section3">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a
-                                        ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor.
-                                        Proin accumsan felis ac felis dapibus, non iaculis mi varius.</p>
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade" id="Section4">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a
-                                        ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor.
-                                        Proin accumsan felis ac felis dapibus, non iaculis mi varius.</p>
-                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             <div class="row d-flex justify-content-center">
                 <div class="col-md-8 total-background ">
-                    <label class="grand-total">Grand Total: R {{grandtotal}}</label>
+                    <label class="grand-total">Grand Total: R 0</label>
                     <button type="button" class="new-section-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fas fa-plus-circle" aria-hidden="true"></i> New Section</button>
                 </div>
             </div>
            <!--Section Start-->
-            {% for s in data %}
             <div class="row d-flex justify-content-center mt-4">
-                <div class="col-md-9 add-product-area">
-                    <label class="heading-lebel">{{s.name}}: <span class="rupees-text">R {{s.sectiontotal}}</span> <span class="product-item-count">{{s.sitems}} item(s)</span></label>
-
-                    {% for p in s.sprodts %}
-                    <div class="card">
-                        <div class="col-sm-12 product-listing">
-                            <img class="added-product-img" src="{% static 'dist/img/image_77.png' %}" alt="Card image" />
-                            <p class="mb-0 product-name-heading">
-                                <span class="sidebar-heading">{{p.name}}</span>
-                                <span>{{p.description}}</span>
-                                <span class="cross-button"><a href="{% url 'deletesp' s.id p.id %}"> <i class="far fa-times-circle" id=""></i></a></span>
-                            </p>
-                            <div class="col-sm-9 p-0 float-left quantity-box">
-                                <span class="item-details ml-0">QTY: </span>
-                                <input type="text" class="form-control col-md-1 col-sm-6" id="colFormLabelSm" placeholder="1">
-                                <span class="item-details">Unit Price: R</span>
-                                <input type="text" class="form-control col-md-2 col-sm-8" id="colFormLabelSm" placeholder={{p.selling_price}}>
-                                <span class="item-details">Discount: </span>
-                                <input type="text" class="form-control col-md-2 col-sm-8" id="colFormLabelSm" placeholder="0"> <span class="item-details">%</span>
-                            </div>
-                            <p class="total-price">
-                                <span class="float-left">Item Total: <b class="price-color">R {{p.selling_price}}</b></span>
-                                <span class="active-button">Active</span>
-                            </p>
-                        </div>
+                    <div class="col-md-8 add-product-area">
+                        <label class="heading-lebel">Uncategorized: <span class="rupees-text">R 0.00</span> 0
+                            item(s)</label>
+                        <p class="text-center heading-lebel"> <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                            <br> Add Product
+                        </p>
                     </div>
-                    {% endfor %}
-                    <!--SubSection of a Section-->
-                    {% for sub in s.subsectns%}
-                    <div class="justify-content-center add-sub-section-area">
-                        <label class="sub-prouduct-heading-lebel">{{sub.name}}:
-                            <span class="rupees-text">R {{sub.subtotal}}</span>
-                            <span class="product-item-count">{{sub.subitems}} item(s)</span>
-                        </label>
-
-                        {% for p in sub.subprodts %}
-                        <div class="card">
-                            <div class="col-sm-12 product-listing">
-                                <img class="added-product-img" src="{% static 'dist/img/image_77.png' %}" alt="Card image" />
-                                <p class="mb-0 product-name-heading"><span class="sidebar-heading">{{p.name}}</span>
-                                    <span>{{p.description}}</span>
-                                    <span class="cross-button"><a href="{% url 'deletesubp' sub.id p.id %}"> <i class="far fa-times-circle" id="deletesubp"></i></a></span>
-                                </p>
-                                <div class="col-sm-9 p-0 float-left quantity-box">
-                                    <span class="item-details ml-0">QTY: </span>
-                                    <input type="text" class="form-control col-md-1 col-sm-6" id="colFormLabelSm" placeholder="1">
-                                    <span class="item-details">Unit Price: R</span>
-                                    <input type="text" class="form-control col-md-2 col-sm-8" id="colFormLabelSm" placeholder={{p.selling_price}}>
-                                    <span class="item-details">Discount: </span>
-                                    <input type="text" class="form-control col-md-2 col-sm-8" id="colFormLabelSm" placeholder="0"> <span class="item-details">%</span>
-                                </div>
-                                <p class="total-price">
-                                    <span class="float-left">Item Total: <b class="price-color">R {{p.selling_price}}</b></span>
-                                    <span class="active-button">Active</span>
-                                </p>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                    {% endfor %}
                 </div>
-            </div>
-            {% endfor %}
         </div>
     </div>
 </div>

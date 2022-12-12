@@ -3,18 +3,18 @@ from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 quotationstatus = (
-    ("no", "No Status"),
-    ("scnf", "Spec Confirmed"),
-    ("act", "Active"),
-    ("hold", "On-hold"),
-    ("ocnf", "Order Confirmed"),
+    ("No Status", "No Status"),
+    ("Spec Confirmed", "Spec Confirmed"),
+    ("Active", "Active"),
+    ("On-hold", "On-hold"),
+    ("Order Confirmed", "Order Confirmed"),
 )
 
 
 class Quotation(models.Model):
     quot_no = models.CharField(max_length=200)
     name = models.CharField(max_length=200)
-    quot_status = models.CharField(max_length=5, choices=quotationstatus, default="no")
+    quot_status = models.CharField(max_length=50, choices=quotationstatus, default="no")
     market_seg = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)

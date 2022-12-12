@@ -34,7 +34,8 @@
                         </div>
                     </div>
                     <div class="col-md-9 text-right">
-                        <button class="btn btn-warning new-quotations-btn"><i class="fa fa-plus quotation-plus-icon"></i> New Quote</button>
+
+                       <a href="{% url 'newquote' %}"> <button class="btn btn-warning new-quotations-btn"><i class="fa fa-plus quotation-plus-icon"></i> New Quote</button></a>
                     </div>
                 </div>
                 <table id="example1" class="table text-center quotations-table">
@@ -62,30 +63,11 @@
                     </tr>
                     {% endfor %}
                     </tbody>
+
                 </table>
             </div>
         </div>
     </div>
 </section>
 {% endblock main-content %}
-
-{% block quottable %}
-<script src="{% static 'plugins/datatables/jquery.dataTables.min.js' %}"></script>
-<script src="{% static 'plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
-<script src="{% static 'plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
-<script src="{% static 'plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
-<script src="{% static 'plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
-<script src="{% static 'plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
-<script>
-    $(function () {
-      $("#example1").DataTable({
-        "responsive": true,
-        "searching": false,
-        "lengthChange": false,
-        "autoWidth": false,
-        "ordering":false
-      });
-    });
-</script>
-{% endblock quottable %}
 

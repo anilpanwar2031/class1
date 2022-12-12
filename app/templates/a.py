@@ -31,16 +31,8 @@ def quotation(request):
     print('BASE DIRR ', BASE_DIR)
     print("BASE DIR Static", os.path.join(BASE_DIR, 'static'))
     quots = Quotation.objects.all()
-    return render(request, "quotation.html", {"quots": quots})
 
-
-def quotdetail(request, pk):
-    print("\n")
-    print("\n")
-    print("pk ", pk)
-
-    products = Product.objects.all()
-    p = Paginator(products, 5)
+    p = Paginator(quots, 2)
     page_number = request.GET.get('page')
     try:
         page_obj = p.get_page(page_number)  # returns the desired page object
@@ -50,6 +42,16 @@ def quotdetail(request, pk):
     except EmptyPage:
         # if page is empty then return last page
         page_obj = p.page(p.num_pages)
+
+    return render(request, "quotation.html", {"page_obj": page_obj})
+
+
+def quotdetail(request, pk):
+    print("\n")
+    print("\n")
+    print("pk ", pk)
+
+    products = Product.objects.all()
 
     quot = Quotation.objects.get(id=pk)
     # print("Quotation ", type(quot))
@@ -60,65 +62,13 @@ def quotdetail(request, pk):
     data, gt = data1[0], data1[1]
 
     context = {'data': data, 'products': products, 'quot': quot, 'grandtotal': gt,
-               "quotationstatus": quotationstatus,'page_obj': page_obj}
+               "quotationstatus": quotationstatus}
     return render(request, "quotationdetail.html", context)
 
 
 def products(request):
     prods = Product.objects.all()
-    p = Paginator(prods, 5)
-    page_number = request.GET.get('page')
-    try:
-        page_obj = p.get_page(page_number)  # returns the desired page object
-    except PageNotAnInteger:
-        # if page_number is not an integer then assign the first page
-        page_obj = p.page(1)
-    except EmptyPage:
-        # if page is empty then return last page
-        page_obj = p.page(p.num_pages)
-    return render(request, "product.html", {"page_obj": page_obj})
-
-
-def newquote(request):
-    products = Product.objects.all()
-    p = Paginator(products, 5)
-    page_number = request.GET.get('page')
-    try:
-        page_obj = p.get_page(page_number)  # returns the desired page object
-    except PageNotAnInteger:
-        # if page_number is not an integer then assign the first page
-        page_obj = p.page(1)
-    except EmptyPage:
-        # if page is empty then return last page
-        page_obj = p.page(p.num_pages)
-    context = {'page_obj': page_obj,"quotationstatus": quotationstatus}
-
-    return render(request, "newquote.html", context)
-
-
-def deletesp(request, sid, pid):
-
-    print("section quote, section , prod", sid, pid)
-    sec = Section.objects.get(id=sid)
-    sec.product.remove(pid)
-    # pd = sec.product.all()
-    #
-    # print("PROOD", pd)
-    # for s in sec:
-    #     print("SS", s)
-    return render(request, "index.html")
-
-
-def deletesubp(request, subid, pid):
-
-    print("subsection, prod", subid, pid)
-    sub = Subsection.objects.get(id=subid)
-    pd = sub.product.all()
-
-    print("PROOD", pd)
-    sub.product.remove(pid)
-    return render(request, "index.html")
-
+    return render(request, "product.html", {"prods": prods})
 
 
 def qsearch(request):

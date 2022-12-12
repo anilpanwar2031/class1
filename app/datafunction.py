@@ -13,11 +13,14 @@ def sectionSubProduct(sections):
         pn = 0
         for p in pds:
             pn = pn + 1
-            prod = Product.objects.get(id=p["product"])
-            pdict = {'id': prod.id, 'name': prod.name, 'description': prod.description, 'quantity': prod.quantity,
+            try:
+                prod = Product.objects.get(id=p["product"])
+                pdict = {'id': prod.id, 'name': prod.name, 'description': prod.description, 'quantity': prod.quantity,
                      'selling_price': prod.selling_price}
-            sectiontotal = sectiontotal + prod.selling_price
-            sprodts.append(pdict)
+                sectiontotal = sectiontotal + prod.selling_price
+                sprodts.append(pdict)
+            except:
+                pass
         print("SEction pn", pn)
         sitems = sitems + pn
         section['sprodts'] = sprodts
@@ -33,13 +36,16 @@ def sectionSubProduct(sections):
             pn = 0
             for p in pds:
                 pn = pn + 1
-                prod = Product.objects.get(id=p["product"])
-                pdict = {'id': prod.id, 'name': prod.name, 'description': prod.description, 'quantity': prod.quantity,
+                try:
+                    prod = Product.objects.get(id=p["product"])
+                    pdict = {'id': prod.id, 'name': prod.name, 'description': prod.description, 'quantity': prod.quantity,
                          'selling_price': prod.selling_price}
 
-                subtotal = subtotal + prod.selling_price
-                sectiontotal = sectiontotal + prod.selling_price
-                subprodts.append(pdict)
+                    subtotal = subtotal + prod.selling_price
+                    sectiontotal = sectiontotal + prod.selling_price
+                    subprodts.append(pdict)
+                except:
+                    pass
             sitems = sitems + pn
             subitems = subitems + pn
             subsection['subtotal'] = subtotal

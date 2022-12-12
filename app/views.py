@@ -27,8 +27,8 @@ def dashboard(request):
 
 def quotation(request):
     BASE_DIR = Path(__file__).resolve().parent.parent
-    print('BASE path',BASE_DIR)
-    print("BASE DIR", os.path.join(BASE_DIR, 'static'))
+    print('BASE DIRR ', BASE_DIR)
+    print("BASE DIR Static", os.path.join(BASE_DIR, 'static'))
     quots = Quotation.objects.all()
     return render(request, "quotation.html", {"quots": quots})
 

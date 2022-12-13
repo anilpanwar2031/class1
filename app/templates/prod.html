@@ -4,6 +4,19 @@
 
 {% block pagenav %}
 <div class="content-header tab-padding-left">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <p class="m-0 dashboard-sub-heading">Dashboard / <span style="color:#424242 !important;">Products</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock pagenav %}
+
+{% block main-content %}
+
+<div class="content-header tab-padding-left">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
@@ -17,53 +30,50 @@
       </div>
       <!-- /.container-fluid -->
     </div>
-{% endblock pagenav %}
+    <!-- /.content-header -->
 
-{% block main-content %}
-<section class="content tab-padding-left">
-    <div class="container-fluid">
+    <!-- Main content -->
+    <section class="content tab-padding-left">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
         <div class="card">
-            <div class="card-body quotations-card">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group has-search">
-                            <span class="fa fa-search form-control-feedback"></span>
-                            <input type="text" class="form-control searchbox" placeholder="Search" />
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="{% url 'export' %}" class="btn btn-warning new-quotations-btn"><i class="fas fa-external-link-alt"></i> Export</a>
-                    </div>
+          <!-- /.card-header -->
+          <div class="card-body quotations-card">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group has-search">
+                  <span class="fa fa-search form-control-feedback"></span>
+                  <input type="text" class="form-control searchbox" placeholder="Search" />
                 </div>
-                <table id="example1" class="table text-center quotations-table">
-                    <thead>
-                    <tr class="heading">
-                        <th>Product</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody id="productsearch">
+              </div>
+            </div>
+            <table id="example1" class="table text-center quotations-table">
+              <thead>
+                <tr class="heading">
+                  <th>Product</th>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Quantity</th>
+                  <th>Price</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+                <tbody id="productsearch">
                     {% for p in page_obj %}
                     <tr>
-                        <td>
-                            <img class="product-listing-image" src="{% static 'dist/img/image_77.png' %}" alt="Card image" />
-                        </td>
+                        <td>{{p.id}}</td>
                         <td>{{p.name}}</td>
                         <td>{{p.description}}</td>
                         <td>{{p.quantity}}</td>
                         <td>{{p.selling_price}}</td>
-                        <td>
-                            <i class="fas fa-edit product-edit-icon" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"></i> <i class="fas fa-trash product-trash-icon" data-toggle="modal" data-target="#deleteModal" data-whatever="@mdo"></i>
-                        </td>
-                    </tr>
-                    {% endfor %}
+                    <td><i class="fas fa-edit product-edit-icon" data-toggle="modal" data-target="#exampleModal"
+                      data-whatever="@mdo"></i> <i class="fas fa-trash product-trash-icon" data-toggle="modal" data-target="#deleteModal" data-whatever="@mdo"></i></td>
+                </tr>
+                        {% endfor %}
                     </tbody>
-                </table>
-            </div>
+             
+            </table>
+          </div>
           <!-- /.card-body -->
         </div>
         <!-- /.row -->
@@ -195,5 +205,46 @@
       </div>
   </div>
 
+
+
+
+<section class="content tab-padding-left">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body quotations-card">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group has-search">
+                            <span class="fa fa-search form-control-feedback"></span>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="text" class="form-control searchbox" placeholder="Search.." id="psearch"/>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+               
+                <div>
+                {%if page_obj.has_previous %} {# whether the previous page exists #}
+            <a href="?page={{page_obj.previous_page_number}}"><</a> {# link to the prev page #}
+            {% endif %}
+            <span>{{page_obj.number}}</span> {# the current page number #}
+
+             {%if page_obj.has_next %} {# whether the next page exists #}
+              <a href="?page={{page_obj.next_page_number}}">></a> {# link to the next page #}
+           {% endif %}
+            </div>
+                <div>
+                    Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}
+                </div>
+                <div>
+                    <a href="?page={{page_obj.next_page_number}}" >{{page_obj.number | add:1}} </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock main-content %}
 

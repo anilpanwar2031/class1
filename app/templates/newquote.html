@@ -3,9 +3,7 @@
 {% block title %}Quotation{% endblock title %}
 
 {% block main-content %}
-<div class="">
-    NEW QUOTE
-</div>
+
 <div class="col-md-12 p-0 quotation-page-1 float-left">
     <div class="col-md-3 col-sm-12 sidebar-text float-left">
         <div class="pt-20">&nbsp;</div>
@@ -42,11 +40,10 @@
               <a href="?page={{page_obj.next_page_number}}">></a> {# link to the next page #}
            {% endif %}
             </div>
-
         </div>
     </div>
     <div class="col-md-9 right-side float-left">
-        <p class="right-side-heading">Dashboard / Quotations/ <span style="color:#424242 !important;">{{quot.quot_no}} ({{quot.name}}) </span></p>
+        <p class="right-side-heading">Dashboard / Quotations/ <span style="color:#424242 !important;">{{qnumber}} ({{quot.name}}) </span></p>
         <div class="container">
             <div class="row">
                     <div class="col-md-12">

@@ -12,8 +12,9 @@ urlpatterns = \
         path('psearch/', views.psearch, name='psearch'),
         path('quotation/<int:pk>', views.quotdetail, name='quotdetail'),
         path('newquote', views.newquote, name='newquote'),
-        path('delete/<int:sid>/<int:pid>', views.deletesp, name='deletesp'),
-        path('deletesub/<int:subid>/<int:pid>', views.deletesubp, name='deletesubp'),
+        path('delete/<int:qid>/<int:sid>/<int:pid>', views.deletesp, name='deletesp'),
+        path('deletesub/<int:qid>/<int:subid>/<int:pid>', views.deletesubp, name='deletesubp'),
+        path('export/', views.export_data, name='export'),
 
         # path('delete/<int:pk>', views.deletesubp, name='deletesubp')
     ]

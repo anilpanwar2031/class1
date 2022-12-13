@@ -136,7 +136,7 @@
                             <p class="mb-0 product-name-heading">
                                 <span class="sidebar-heading">{{p.name}}</span>
                                 <span>{{p.description}}</span>
-                                <span class="cross-button"><a href="{% url 'deletesp' s.id p.id %}"> <i class="far fa-times-circle" id=""></i></a></span>
+                                <span class="cross-button"><a href="{% url 'deletesp' quot.id s.id p.id %}"> <i class="far fa-times-circle" id=""></i></a></span>
                             </p>
                             <div class="col-sm-9 p-0 float-left quantity-box">
                                 <span class="item-details ml-0">QTY: </span>
@@ -167,7 +167,7 @@
                                 <img class="added-product-img" src="{% static 'dist/img/image_77.png' %}" alt="Card image" />
                                 <p class="mb-0 product-name-heading"><span class="sidebar-heading">{{p.name}}</span>
                                     <span>{{p.description}}</span>
-                                    <span class="cross-button"><a href="{% url 'deletesubp' sub.id p.id %}"> <i class="far fa-times-circle" id="deletesubp"></i></a></span>
+                                    <span class="cross-button"><a href="{% url 'deletesubp' quot.id sub.id p.id %}"> <i class="far fa-times-circle" id="deletesubp"></i></a></span>
                                 </p>
                                 <div class="col-sm-9 p-0 float-left quantity-box">
                                     <span class="item-details ml-0">QTY: </span>

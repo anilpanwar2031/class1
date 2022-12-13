@@ -8,10 +8,23 @@ from datetime import datetime
 from .models import quotationstatus
 from .datafunction import sectionSubProduct
 from django.core.paginator import Paginator
+import random, string
+import pandas as pd
 
 import os
 
 from pathlib import Path
+
+
+def export_data(request):
+    prods = Product.objects.all()
+    data = []
+    for p in prods:
+        data.append({'Name': p.name, 'Description': p.description, 'Quatantity':p.quantity, 'Price': p.selling_price})
+    pd.DataFrame(data).to_excel('products.xlsx')
+    # print(data)
+    return redirect('products')
+
 
 
 def index(request):
@@ -27,9 +40,6 @@ def dashboard(request):
 
 
 def quotation(request):
-    BASE_DIR = Path(__file__).resolve().parent.parent
-    print('BASE DIRR ', BASE_DIR)
-    print("BASE DIR Static", os.path.join(BASE_DIR, 'static'))
     quots = Quotation.objects.all()
     return render(request, "quotation.html", {"quots": quots})
 
@@ -80,6 +90,12 @@ def products(request):
 
 
 def newquote(request):
+    rnum = random.randint(10000,100000)
+    rchar = ''.join(random.choice(string.ascii_uppercase) for _ in range(6))
+    print("NUM", rnum)
+    print("CHAR", rchar)
+    qnumber = rchar+'-'+str(rnum)+'.1'
+    print(qnumber)
     products = Product.objects.all()
     p = Paginator(products, 5)
     page_number = request.GET.get('page')
@@ -91,33 +107,26 @@ def newquote(request):
     except EmptyPage:
         # if page is empty then return last page
         page_obj = p.page(p.num_pages)
-    context = {'page_obj': page_obj,"quotationstatus": quotationstatus}
+    context = {'page_obj': page_obj,"quotationstatus": quotationstatus, 'qnumber':qnumber}
 
     return render(request, "newquote.html", context)
 
 
-def deletesp(request, sid, pid):
-
+def deletesp(request, qid, sid, pid):
     print("section quote, section , prod", sid, pid)
     sec = Section.objects.get(id=sid)
     sec.product.remove(pid)
-    # pd = sec.product.all()
-    #
-    # print("PROOD", pd)
-    # for s in sec:
-    #     print("SS", s)
-    return render(request, "index.html")
+    return redirect('quotdetail', qid)
 
 
-def deletesubp(request, subid, pid):
-
+def deletesubp(request, qid, subid, pid):
     print("subsection, prod", subid, pid)
     sub = Subsection.objects.get(id=subid)
     pd = sub.product.all()
 
     print("PROOD", pd)
     sub.product.remove(pid)
-    return render(request, "index.html")
+    return redirect('quotdetail', qid)
 
 
 

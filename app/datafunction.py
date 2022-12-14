@@ -1,4 +1,5 @@
 from .models import Quotation, Product, Section, Subsection
+from django.core.paginator import Paginator
 
 
 def sectionSubProduct(sections):
@@ -62,6 +63,20 @@ def sectionSubProduct(sections):
     return data1
 
 
+
+# def productpagination(request):
+#     products = Product.objects.all()
+#     p = Paginator(products, 5)
+#     page_number = request.GET.get('page')
+#     try:
+#         page_obj = p.get_page(page_number)  # returns the desired page object
+#     except PageNotAnInteger:
+#         # if page_number is not an integer then assign the first page
+#         page_obj = p.page(1)
+#     except EmptyPage:
+#         # if page is empty then return last page
+#         page_obj = p.page(p.num_pages)
+#         return page_obj
 
 
 # def grandtotal(sections):

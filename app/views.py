@@ -90,10 +90,12 @@ def products(request):
 
 
 def newquote(request):
-    rnum = random.randint(10000,100000)
+    rnum = random.randint(10000, 100000)
     rchar = ''.join(random.choice(string.ascii_uppercase) for _ in range(6))
     print("NUM", rnum)
     print("CHAR", rchar)
+
+
     qnumber = rchar+'-'+str(rnum)+'.1'
     print(qnumber)
     products = Product.objects.all()
@@ -107,9 +109,16 @@ def newquote(request):
     except EmptyPage:
         # if page is empty then return last page
         page_obj = p.page(p.num_pages)
-    context = {'page_obj': page_obj,"quotationstatus": quotationstatus, 'qnumber':qnumber}
+
+    context = {'page_obj': page_obj, "quotationstatus": quotationstatus, 'qnumber':qnumber, 'rnum': rnum, 'rchar': rchar}
 
     return render(request, "newquote.html", context)
+
+
+def savequote(request):
+
+    return render(request, 'index.html')
+
 
 
 def deletesp(request, qid, sid, pid):

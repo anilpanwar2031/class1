@@ -15,6 +15,7 @@ urlpatterns = \
         path('delete/<int:qid>/<int:sid>/<int:pid>', views.deletesp, name='deletesp'),
         path('deletesub/<int:qid>/<int:subid>/<int:pid>', views.deletesubp, name='deletesubp'),
         path('export/', views.export_data, name='export'),
+        path('savequote/', views.savequote, name='savequote'),
 
         # path('delete/<int:pk>', views.deletesubp, name='deletesubp')
     ]

@@ -64,7 +64,10 @@
                             </ul>
                             <div class="tab-content tabs">
                                 <div role="tabpanel" class="tab-pane in active" id="Section1">
-                                    <form>
+                                    <form method="post" action="{% url 'savequote' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" class="form-control w-50 ml-2" name="rnum" value="{{rnum}}">
+                                        <input type="hidden" class="form-control w-50 ml-2" name="rchar" value="{{rchar}}">
                                         <div class="row">
                                             <div class="col-md-4 pr-0">
                                                 <div class="form-group d-flex">
@@ -90,7 +93,7 @@
                                                             class="fas fa-external-link-alt"></i> Export</button>
                                                     <button type="submit" class="btn btn-default export-btn"><i
                                                             class="fas fa-layer-group"></i> Create Version</button>
-                                                    <button type="submit" class="btn btn-default save-btn"><i
+                                                  <button type="submit" class="btn btn-default save-btn"><i
                                                             class="fas fa-download"></i> Save</button>
                                                 </div>
                                             </div>

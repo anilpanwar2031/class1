@@ -13,6 +13,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 import os
 from pathlib import Path
+import csv
 
 
 def index(request):
@@ -204,12 +205,27 @@ def signout(request):
     logout(request)
     return redirect('index')
 
+
 def export_data(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=products.csv'
+    writer = csv.writer(response)
     prods = Product.objects.all()
-    data = []
+
+    writer.writerow(['Name', 'Description', 'Quantity', 'Price'])
+
     for p in prods:
-        data.append({'Name': p.name, 'Description': p.description, 'Quatantity':p.quantity, 'Price': p.selling_price})
-    pd.DataFrame(data).to_excel('products.xlsx')
-    # print(data)
-    return redirect('products')
+        writer.writerow([p.name, p.description, p.quantity, p.selling_price])
+
+    return response
+
+
+
+    # prods = Product.objects.all()
+    # data = []
+    # for p in prods:
+    #     data.append({'Name': p.name, 'Description': p.description, 'Quatantity':p.quantity, 'Price': p.selling_price})
+    # pd.DataFrame(data).to_excel('products.xlsx')
+    # # print(data)
+    # return redirect('products')
 

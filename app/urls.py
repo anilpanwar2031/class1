@@ -16,6 +16,10 @@ urlpatterns = \
         path('deletesub/<int:qid>/<int:subid>/<int:pid>', views.deletesubp, name='deletesubp'),
         path('export/', views.export_data, name='export'),
         path('savequote/', views.savequote, name='savequote'),
+        path('newsection/', views.newsection, name='newsection'),
+
+
+
 
         path('signin', views.signin, name='signin'),
         path('signout', views.signout, name='signout'),

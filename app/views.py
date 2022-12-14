@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse
 from .models import Quotation, Product, Section, Subsection
-# , Product, Quotation_item, Client, Section
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.db.models import Q
@@ -13,10 +12,7 @@ import pandas as pd
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 import os
-
 from pathlib import Path
-
-
 
 
 def index(request):
@@ -47,11 +43,18 @@ def quotation(request):
         crt_at = q.created_at
         crt_by = q.created_by
         client_name = "Stuart"
-        qt = {'id': id, 'number': qnumber, 'status': status, 'ms': ms, 'crt_at': crt_at, 'crt_by': crt_by, 'client':client_name}
-        data.append(qt)
+
+        sections = Section.objects.filter(quotation=id)
+        gt = 0
+        data1 = sectionSubProduct(sections)
+        gt = data1[1]
+
+        quote = {'id': id, 'number': qnumber, 'status': status, 'ms': ms, 'crt_at': crt_at, 'crt_by': crt_by, 'client':client_name, 'gt': gt}
+        data.append(quote)
 
     print(data)
     return render(request, "quotation.html", {"data": data})
+
 
 @login_required()
 def quotdetail(request, pk):
@@ -72,10 +75,7 @@ def quotdetail(request, pk):
         page_obj = p.page(p.num_pages)
 
     quot = Quotation.objects.get(id=pk)
-    # qt = {'id': id, 'number': qnumber, 'status': status, 'ms': ms, 'crt_at': crt_at, 'crt_by': crt_by,
-    #       'client': client_name}
 
-    # print("Quotation ", type(quot))
     sections = Section.objects.filter(quotation=pk)
     prods = []
     gt = 0; data = []
@@ -85,6 +85,7 @@ def quotdetail(request, pk):
     context = {'data': data, 'products': products, 'quot': quot, 'grandtotal': gt,
                "quotationstatus": quotationstatus,'page_obj': page_obj}
     return render(request, "quotationdetail.html", context)
+
 
 @login_required()
 def products(request):
@@ -101,24 +102,41 @@ def products(request):
         page_obj = p.page(p.num_pages)
     return render(request, "product.html", {"page_obj": page_obj})
 
+
 @login_required()
 def newquote(request):
     rnum = random.randint(10000, 100000)
     rchar = ''.join(random.choice(string.ascii_uppercase) for _ in range(6))
     created_by = request.user
-    print("NUM", rnum)
-    print("CHAR", rchar)
+
     Quotation(quot_no=rnum, name=rchar, created_by=created_by).save()
     last_quot = Quotation.objects.all().order_by('-created_at')[0]
-    print("LAST Quote ID", last_quot.id)
-    # qnumber = rchar+'-'+str(rnum)+'.1'
-    # print(qnumber)
+
     return redirect('quotdetail', last_quot.id)
 
-
+@login_required()
 def savequote(request):
+    if request.method == 'POST':
+        qid = request.POST['qid']
+        status = request.POST['status']
+        qname = request.POST['qname']
+        if qname != '':
+            quote = Quotation.objects.get(id=qid)
+            quote.name = qname
+            quote.quot_status = status
+            quote.save()
+            print("Qname", qname)
+    return redirect('quotdetail', qid)
 
-    return render(request, 'index.html')
+
+def newsection(request):
+    print("New Section")
+    if request.method == 'POST':
+        qid = request.POST['qid']
+        sname = request.POST['sname']
+        print("sname", sname)
+        print("Qid", qid)
+    return redirect('index')
 
 
 
@@ -137,7 +155,6 @@ def deletesubp(request, qid, subid, pid):
     print("PROOD", pd)
     sub.product.remove(pid)
     return redirect('quotdetail', qid)
-
 
 
 def qsearch(request):
@@ -164,7 +181,6 @@ def psearch(request):
         data = list(queryset)
         # print("Data = ", data)
         return JsonResponse(data, safe=False)
-
 
 
 def signin(request):

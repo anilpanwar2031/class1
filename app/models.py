@@ -17,6 +17,7 @@ class Quotation(models.Model):
     quot_status = models.CharField(max_length=50, choices=quotationstatus, default="No Status")
     market_seg = models.CharField(max_length=200, default="N/A")
     created_at = models.DateTimeField(auto_now_add=True)
+    # created_by = models.CharField(max_length=200, default="a@gmail.com")
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     # quot_total = models.IntegerField()
 

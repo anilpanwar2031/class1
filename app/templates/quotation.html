@@ -51,14 +51,14 @@
                     </tr>
                     </thead>
                     <tbody id="qtbody">
-                    {% for q in quots %}
+                    {% for q in data %}
                     <tr>
-                        <td class="fw-bold"><a href="{% url 'quotdetail' q.id %}">{{q.quot_no}}</a></td>
-                        <td>{{q.name}}</td>
-                        <td>{{q.get_quot_status_display}}</td>
-                        <td>{{q.market_seg}}</td>
-                        <td>{{q.created_at|date:"M d, Y"}} | {{q.created_at|time:"h:i a"}}</td>
-                        <td>{{q.created_by.email}}</td>
+                        <td class="fw-bold"><a href="{% url 'quotdetail' q.id %}">{{q.}}{{q.number}}</a></td>
+                        <td>{{q.client}}</td>
+                        <td>{{q.status}}</td>
+                        <td>{{q.ms}}</td>
+                        <td>{{q.crt_at|date:"M d, Y"}} | {{q.crt_at|time:"h:i a"}}</td>
+                        <td>{{q.crt_by}}</td>
                         <td class="fw-bold">R 320</td>
                     </tr>
                     {% endfor %}

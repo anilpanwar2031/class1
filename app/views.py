@@ -10,20 +10,12 @@ from .datafunction import sectionSubProduct
 from django.core.paginator import Paginator
 import random, string
 import pandas as pd
-
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 import os
 
 from pathlib import Path
 
-
-def export_data(request):
-    prods = Product.objects.all()
-    data = []
-    for p in prods:
-        data.append({'Name': p.name, 'Description': p.description, 'Quatantity':p.quantity, 'Price': p.selling_price})
-    pd.DataFrame(data).to_excel('products.xlsx')
-    # print(data)
-    return redirect('products')
 
 
 
@@ -31,7 +23,9 @@ def index(request):
     return render(request, 'index.html')
 
 
+@login_required()
 def dashboard(request):
+
     quots = Quotation.objects.all().count()
     products = Product.objects.all().count()
     users = User.objects.all().count()
@@ -39,11 +33,27 @@ def dashboard(request):
     return render(request, "dashboard.html", {"quots": quots, "products": products, "users": users, "active": active})
 
 
+@login_required()
 def quotation(request):
-    quots = Quotation.objects.all()
-    return render(request, "quotation.html", {"quots": quots})
+    quots = Quotation.objects.all().order_by('-created_at')
+    data = []
+    for q in quots:
+        id = q.id
+        rnum = q.quot_no
+        rchar = q.name
+        qnumber = rchar+'-'+str(rnum)+'.1'
+        status = q.quot_status
+        ms = q.market_seg
+        crt_at = q.created_at
+        crt_by = q.created_by
+        client_name = "Stuart"
+        qt = {'id': id, 'number': qnumber, 'status': status, 'ms': ms, 'crt_at': crt_at, 'crt_by': crt_by, 'client':client_name}
+        data.append(qt)
 
+    print(data)
+    return render(request, "quotation.html", {"data": data})
 
+@login_required()
 def quotdetail(request, pk):
     print("\n")
     print("\n")
@@ -62,6 +72,9 @@ def quotdetail(request, pk):
         page_obj = p.page(p.num_pages)
 
     quot = Quotation.objects.get(id=pk)
+    # qt = {'id': id, 'number': qnumber, 'status': status, 'ms': ms, 'crt_at': crt_at, 'crt_by': crt_by,
+    #       'client': client_name}
+
     # print("Quotation ", type(quot))
     sections = Section.objects.filter(quotation=pk)
     prods = []
@@ -73,7 +86,7 @@ def quotdetail(request, pk):
                "quotationstatus": quotationstatus,'page_obj': page_obj}
     return render(request, "quotationdetail.html", context)
 
-
+@login_required()
 def products(request):
     prods = Product.objects.all()
     p = Paginator(prods, 5)
@@ -88,31 +101,19 @@ def products(request):
         page_obj = p.page(p.num_pages)
     return render(request, "product.html", {"page_obj": page_obj})
 
-
+@login_required()
 def newquote(request):
     rnum = random.randint(10000, 100000)
     rchar = ''.join(random.choice(string.ascii_uppercase) for _ in range(6))
+    created_by = request.user
     print("NUM", rnum)
     print("CHAR", rchar)
-
-
-    qnumber = rchar+'-'+str(rnum)+'.1'
-    print(qnumber)
-    products = Product.objects.all()
-    p = Paginator(products, 5)
-    page_number = request.GET.get('page')
-    try:
-        page_obj = p.get_page(page_number)  # returns the desired page object
-    except PageNotAnInteger:
-        # if page_number is not an integer then assign the first page
-        page_obj = p.page(1)
-    except EmptyPage:
-        # if page is empty then return last page
-        page_obj = p.page(p.num_pages)
-
-    context = {'page_obj': page_obj, "quotationstatus": quotationstatus, 'qnumber':qnumber, 'rnum': rnum, 'rchar': rchar}
-
-    return render(request, "newquote.html", context)
+    Quotation(quot_no=rnum, name=rchar, created_by=created_by).save()
+    last_quot = Quotation.objects.all().order_by('-created_at')[0]
+    print("LAST Quote ID", last_quot.id)
+    # qnumber = rchar+'-'+str(rnum)+'.1'
+    # print(qnumber)
+    return redirect('quotdetail', last_quot.id)
 
 
 def savequote(request):
@@ -163,3 +164,36 @@ def psearch(request):
         data = list(queryset)
         # print("Data = ", data)
         return JsonResponse(data, safe=False)
+
+
+
+def signin(request):
+    print("In the sign in")
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            print("USER", user)
+            login(request, user)
+            return redirect('dashboard')
+            # return render(request, "dashboard.html", {'user':user})
+        else:
+            return redirect('index')
+
+
+def signout(request):
+    logout(request)
+    return redirect('index')
+
+def export_data(request):
+    prods = Product.objects.all()
+    data = []
+    for p in prods:
+        data.append({'Name': p.name, 'Description': p.description, 'Quatantity':p.quantity, 'Price': p.selling_price})
+    pd.DataFrame(data).to_excel('products.xlsx')
+    # print(data)
+    return redirect('products')
+

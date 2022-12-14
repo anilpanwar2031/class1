@@ -54,12 +54,22 @@
                         <a href="#" class="nav-item nav-link">User Management</a>
                         <a href="#" class="nav-item nav-link">Import/Export</a>
                     </div>
+                    {% if request.user.is_authenticated %}
                     <div class="navbar-nav ms-auto">
-                        <a href="#" class="nav-item nav-link header-side-left-text">PB</a>
+                        <a href="#" class="nav-item nav-link header-side-left-text">{{request.user}}</a>
                     </div>
+                    <div class="navbar-nav ms-auto">
+                        <a href="{% url 'signout' %}" class="nav-item nav-link header-side-left-text">Logout</a>
+                    </div>
+                    {% else %}
+                    <div class="navbar-nav ms-auto">
+                        <a href="{% url 'index' %}" class="nav-item nav-link header-side-left-text">Login</a>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </nav>
+
         {% block pagenav %} {% endblock pagenav %}
 
         {% block main-content %} {% endblock main-content %}

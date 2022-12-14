@@ -17,5 +17,8 @@ urlpatterns = \
         path('export/', views.export_data, name='export'),
         path('savequote/', views.savequote, name='savequote'),
 
+        path('signin', views.signin, name='signin'),
+        path('signout', views.signout, name='signout'),
+
         # path('delete/<int:pk>', views.deletesubp, name='deletesubp')
     ]

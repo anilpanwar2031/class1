@@ -17,17 +17,25 @@
         <img src="{% static 'dist/img/logo.png' %}" class="img">
     </div>
     <!-- /.login-logo -->
+    <div>
+        Username = anil
+    </div>
+    <div>
+        Password = 1234
+    </div>
+
+    </div>
     <div class="card">
         <div class="card-body login-card-body">
-            <form action="{% url 'dashboard' %}" method="get">
-
+            <form action="{% url 'signin' %}" method="post">
+                {% csrf_token %}
                 <div class="input-group mb-3">
                     <span class="label">Username</span>
-                    <input type="text" class="form-control" placeholder="Email">
+                    <input type="text" class="form-control" placeholder="User name is anil", name="username">
                 </div>
                 <div class="input-group mb-3">
                     <span class="label">Password</span>
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="password" class="form-control" placeholder="Password is 1234", name="password">
                 </div>
                 <div class="row">
                     <div class="col-8">

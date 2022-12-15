@@ -115,6 +115,7 @@ def newquote(request):
 
     return redirect('quotdetail', last_quot.id)
 
+
 @login_required()
 def savequote(request):
     if request.method == 'POST':
@@ -137,7 +138,22 @@ def newsection(request):
         sname = request.POST['sname']
         print("sname", sname)
         print("Qid", qid)
-    return redirect('index')
+        qt = Quotation.objects.get(id=qid)
+        Section(name=sname, quotation=qt).save()
+    return redirect('quotdetail', qid)
+
+
+def newsubsection(request):
+    print("New Section")
+    if request.method == 'POST':
+        qid = request.POST['qid']
+        print("QIDD", qid)
+        sid = request.POST['sid']
+        print("SSSID", sid)
+        subname = request.POST['subname']
+        sec = Section.objects.get(id=sid)
+        Subsection(name=subname, section=sec).save()
+    return redirect('quotdetail', qid)
 
 
 
@@ -196,7 +212,6 @@ def signin(request):
             print("USER", user)
             login(request, user)
             return redirect('dashboard')
-            # return render(request, "dashboard.html", {'user':user})
         else:
             return redirect('index')
 
@@ -211,12 +226,9 @@ def export_data(request):
     response['Content-Disposition'] = 'attachment; filename=products.csv'
     writer = csv.writer(response)
     prods = Product.objects.all()
-
     writer.writerow(['Name', 'Description', 'Quantity', 'Price'])
-
     for p in prods:
         writer.writerow([p.name, p.description, p.quantity, p.selling_price])
-
     return response
 
 

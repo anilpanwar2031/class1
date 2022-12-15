@@ -96,9 +96,48 @@
                     <button type="button" class="new-section-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fas fa-plus-circle" aria-hidden="true"></i> New Section</button>
                 </div>
             </div>
+
            <!--Section Start-->
             {% for s in data %}
             <div class="row d-flex justify-content-center mt-4">
+                <div class="col-md-3 add-sub-section-icons">
+                    <i class="far fa-clone"></i>
+                    <i class="fa fa-sliders-h" aria-hidden="true"></i>
+                    <i class="fas fa-plus-circle" data-toggle="modal" data-target="#productModal"></i>
+                    <i class="fas fa-trash"></i>
+                    </div>
+            </div>
+<!--            Add Sub Section-->
+            <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title add-section">Add Sub Section</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button></div>
+                        <div class="modal-body">
+                            <form action="{% url 'newsubsection' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{quot.id}}" name="qid">
+                    <input type="hidden" value="{{s.id}}" name="sid">
+                    <div class="col-md-8 pr-0">
+                        <div class="form-group d-flex">
+                            <label class="heading-lebel mt-2">Name: </label>
+                            <input type="text" class="form-control w-60 ml-2" id="subname" placeholder="Sub Section Name" name="subname">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default btn-add"> Add</button>
+                        <button type="button" class="btn btn-default btn-cancel" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+            <div class="row d-flex justify-content-center">
                 <div class="col-md-9 add-product-area">
                     <label class="heading-lebel">{{s.name}}: <span class="rupees-text">R {{s.sectiontotal}}</span> <span class="product-item-count">{{s.sitems}} item(s)</span></label>
 
@@ -125,6 +164,12 @@
                         </div>
                     </div>
                     {% endfor %}
+                    <div>
+                         <p class="text-center heading-lebel"> <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                        <br> Add Product
+                    </p>
+                    </div>
+
                     <!--SubSection of a Section-->
                     {% for sub in s.subsectns%}
                     <div class="justify-content-center add-sub-section-area">
@@ -157,6 +202,11 @@
                             </div>
                         </div>
                         {% endfor %}
+                        <div>
+                         <p class="text-center heading-lebel"> <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                        <br> Add Product
+                    </p>
+                    </div>
                     </div>
                     {% endfor %}
                 </div>
@@ -173,11 +223,13 @@
         </div>
     </div>
 </div>
+
+<!-- Add Section Popup-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title add-section" id="exampleModalLabel">Add Section</h5>
+                <h5 class="modal-title add-section">Add Section</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -185,6 +237,7 @@
             <div class="modal-body">
                 <form action="{% url 'newsection' %}" method="post">
                     {% csrf_token %}
+                    <input type="hidden" value="{{quot.id}}" name="qid">
                     <div class="col-md-8 pr-0">
                         <div class="form-group d-flex">
                             <label class="heading-lebel mt-2">Name: </label>
@@ -192,7 +245,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-default btn-add" data-dismiss="modal">Add</button>
+                        <button type="submit" class="btn btn-default btn-add"> Add</button>
                         <button type="button" class="btn btn-default btn-cancel" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
@@ -201,4 +254,5 @@
         </div>
     </div>
 </div>
+
 {% endblock main-content %}

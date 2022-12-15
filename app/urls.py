@@ -17,6 +17,7 @@ urlpatterns = \
         path('export/', views.export_data, name='export'),
         path('savequote/', views.savequote, name='savequote'),
         path('newsection/', views.newsection, name='newsection'),
+        path('newsubsection/', views.newsubsection, name='newsubsection'),
 
 
 
